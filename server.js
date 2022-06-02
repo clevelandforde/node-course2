@@ -1,9 +1,16 @@
 const http = require('http');
 const fs = require('fs');
+const _ = require('lodash');
 
 const server = http.createServer((req, res) => {
-  //   console.log('Server running');
-  // console.log(req.url, req.httpVersion, req.method, req.headers);
+  // lodash
+  const num = _.random(0, 50);
+  // console.log(num);
+
+  // _.foreach example
+  _.forEach({ a: 1, b: 2, c: 3 }, function (value, key) {
+    console.log(key);
+  });
 
   // set header content type
   res.setHeader('Content-Type', 'text/html');
