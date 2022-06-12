@@ -1,14 +1,31 @@
 const express = require('express');
 const { appendFile } = require('fs');
 const { STATUS_CODES } = require('http');
+const morgan = require('morgan');
 
 // express app
-const App = express();
+const app = express();
+
+app.use(express.static('public'));
+
+morgan('tiny');
 
 // register view engine
-App.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 
-App.get('/', (req, res) => {
+app.use((req, res, next) => {
+  console.log('new request made');
+  console.log('host: ', req.hostname);
+  console.log('path: ', req.path);
+  console.log('method: ', req.method);
+  next();
+});
+
+app.use((req, res, nex) => {
+  console.log('In the next middleware');
+  nex();
+});
+app.get('/', (req, res) => {
   const users = [
     { firstName: 'Caius', lastName: 'Forde', idNo: 93747498 },
     { firstName: 'Tia', lastName: 'Azore', idNo: 8947573 },
@@ -17,26 +34,20 @@ App.get('/', (req, res) => {
   res.render('index', { title: 'Home', users });
 });
 
-App.get('/about', (req, res) => {
+app.get('/about', (req, res) => {
   res.status(404).render('about', { title: 'About' });
 });
 
-App.get('/users/create', (req, res) => {
+app.get('/users/create', (req, res) => {
   res.render('create', { title: 'Create new user' });
 });
 
-// // redirect
-// App.get('/about-us', (req, res) => {
-//   //   res.redirect('/about', '/views/about.html', { root: __dirname });
-//   res.redirect('/about');
-// });
-
 // 404 page
-App.use((req, res) => {
+app.use((req, res) => {
   res.render('404', { title: '404' });
 });
 
 // listen for requests
-App.listen(3000, () => {
+app.listen(3000, () => {
   console.log('listening on port 3000 express');
 });
