@@ -4,16 +4,17 @@
   <body>
     <%- include('./partials/nav.ejs') %>
 
-    <div class="users content"></div>
-    <h2>All Users</h2>
+    <div class="users content">
+      <h2>All Users</h2>
 
-    <% if(users.length > 0) { %> <% users.forEach(user =>{%>
-    <h3 class="lastName"><%= user.lastName %></h3>
-    <p class="firstName"><%= user.firstName %></p>
-    <p class="idNo"><%= user.idNo %></p>
-    <% }) %> <% } else {%>
-    <p>There are no users to display!</p>
-    <%}%>
+      <% if(users.length > 0) { %> <% users.forEach(user =>{%>
+      <h3 class="lastName"><%= user.lastName %></h3>
+      <p class="firstName"><%= user.firstName %></p>
+      <p class="idNo"><%= user.idNo %></p>
+      <% }) %> <% } else {%>
+      <p>There are no users to display!</p>
+      <%}%>
+    </div>
   </body>
   <%- include('./partials/footer.ejs') %>
 </html>
