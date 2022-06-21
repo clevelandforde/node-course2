@@ -8,9 +8,13 @@
       <h2>All Users</h2>
 
       <% if(users.length > 0) { %> <% users.forEach(user =>{%>
-      <h3 class="lastName"><%= user.lastName %></h3>
-      <p class="firstName"><%= user.firstName %></p>
-      <p class="idNo"><%= user.idNo %></p>
+
+      <a class="single" href="/users/<%= user._id %> ">
+        <h3 class="lastName"><%= user.lastName %></h3>
+        <p class="firstName"><%= user.firstName %></p>
+        <p class="idNo"><%= user.rank %></p>
+      </a>
+
       <% }) %> <% } else {%>
       <p>There are no users to display!</p>
       <%}%>

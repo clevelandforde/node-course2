@@ -60,8 +60,18 @@ p {
   margin-left: 20px;
 }
 /* index styles */
-/* details styles */
+.users a {
+  display: block;
+  margin-left: 40px 0;
+  padding-left: 30px;
+  border-left: 6px solid rgb(7, 110, 7);
+}
 
+.users a:hover h3 {
+  color: crimson;
+}
+
+/* details styles */
 /* create styles */
 .create-user form {
   max-width: 400px;

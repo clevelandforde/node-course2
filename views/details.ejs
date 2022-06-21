@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+
+  <body>
+    <%- include('./partials/nav.ejs') %>
+  </body>
+  <div class="details content">
+    <h2><%= user.lastName %></h2>
+    <div class="content">
+      <p><b>First Name:</b> <%= user.firstName %></p>
+      <p><b>National ID No.:</b> <%= user.idNo %></p>
+      <p><b>Rank:</b> <%= user.rank %></p>
+      <p><b>Regiment No.:</b> <%= user.regimentNo %></p>
+    </div>
+  </div>
+
+  <%- include('./partials/footer.ejs') %>
+</html>
