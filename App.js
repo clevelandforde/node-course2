@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const User = require('./models/user');
+const userRoutes = require('./routes/userRoutes');
 require('dotenv').config();
 
 // express app
@@ -32,41 +32,7 @@ app.get('/about', (req, res) => {
 });
 
 // user routes
-app.get('/users', (req, res) => {
-  User.find()
-    .sort({ createdAt: -1 })
-    .then((result) => {
-      res.render('index', { title: 'All Users', users: result });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-app.post('/users', (req, res) => {
-  const user = new User(req.body);
-  user
-    .save()
-    .then((result) => {
-      res.redirect('/users');
-    })
-    .catch((err) => console.log(err));
-});
-
-app.get('/users/create', (req, res) => {
-  res.render('create', { title: 'Create new user' });
-});
-
-app.get('/users/:id', (req, res) => {
-  const id = req.params.id;
-  //   console.log('MyId', id);
-
-  User.findById(id)
-    .then((result) => {
-      res.render('details', { title: 'User details', user: result });
-    })
-    .catch((err) => console.log(err));
-});
+app.use('/users', userRoutes); // scoped to the specific url "users"
 
 // 404 page
 app.use((req, res) => {
